@@ -1,48 +1,51 @@
-let nombre;
+let nombreIngres = prompt("Hola, ¿cómo te llamas?");
 
-nombre= "Mar"
+alert ("Hola " + nombreIngres);
 
-
-console.log(nombre)
-
-
-solicitarNombre = prompt ( "Hola ¿como te llamas?")
-function solicitarNombre(){
-    let nombreIngresado = prompt("Ingresar nombre")
-    alert ("El nombre ingresado es" + nombreIngresado)
-}
-edad = prompt ( "Hola  " + solicitarNombre +  "  ¿Cuantos años tenés?")
-if(edad > 18){
-
-   let ingreso = confirm("¿Deseas ingresar al sitio? ")
-
-
-//let catalogo  = prompt ("¿Que te interesa ver de nuestro catálogo?") 
-alert ("Bienvendio al sitio")
-
-while (ingreso){ ingreso=confirm ("¿Desea salir del sitio?")}
-
-let catalogo = (1, 2, 3)
-const insumos = [ catalogo];
-console.log (insumos)
-
-
-
-const IVA=1.23;
-let imp= prompt ("Ingresa el valor total de tu compra para calcular el IVA")
-let precioConIVA= (imp * IVA) ;
-console.log( precioConIVA)
-alert ( precioConIVA)
-
-
+let ingreso = confirm("¿Deseas ingresar al sitio?");
+if (ingreso) {
+  alert("Bienvenido al sitio");
+} else {
+  alert("Gracias por visitarnos");
 }
 
-else if (edad <18){
-    alert("Volvé cuando seas mayor")
-edad = parseInt(edad)
+let categorias = ["Fragancias", "Insumos", "Aromaterapia"];
+const articulos = ["Aceites", "Velas", "Difusores"];
 
-let= edadDentroDe10años = edad + 10
-alert("Por ejemplo dentro de 10 años tendrías:"+ edadDentroDe10años)}
+let preciosArticulos = [40, 50, 70];
+
+for (let i = 0; i < articulos.length; i++) {
+ console.log("Artículo: " + articulos[i]);
+ let categoria;
+ do {
+   categoria = prompt("Por favor ingrese la categoría del artículo '" + articulos[i]);
+   if (!categorias) {
+     alert("La categoría ingresada no es válida. Por favor ingrese una categoría válida.");
+   }
+ } while (!categorias.includes(categoria));
+
+ let precio;
+ do {
+   precio = parseFloat(prompt(`Por favor ingrese el precio del artículo ${articulos[i]}`));
+   if (isNaN(precio) || precio <= 0) {
+     alert("El precio ingresado no es válido. Por favor ingrese un número positivo como precio.");
+   }
+ } while (isNaN(precio) || precio <= 0);
+
+ preciosArticulos.push(precio);
+ alert(`${articulos[i]} fue comprado en la categoría ${categoria}`);
+}
+
+
+let totalCompraSinIVA= preciosArticulos.reduce((a, b) => a + b, 0);
+alert(`El total de la compra sin IVA es: ${totalCompraSinIVA.toFixed(2)}€`);
+
+const IVA = 1.23;
+let impuestoIVA= totalCompraSinIVA * IVA;
+alert(`El total de la compra con IVA incluido es: ${impuestoIVA.toFixed(2)}€`);
+
+
+
 
 
 
@@ -57,5 +60,4 @@ alert("Por ejemplo dentro de 10 años tendrías:"+ edadDentroDe10años)}
  
 
 
-    
-//for(let i=0; i<10;i++){ console.log("itercion N°" + i); }
+ 
