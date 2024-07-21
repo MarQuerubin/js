@@ -1,48 +1,60 @@
 let nombreIngres = prompt("Hola, ¿cómo te llamas?");
-
 alert ("Hola " + nombreIngres);
 
 let ingreso = confirm("¿Deseas ingresar al sitio?");
-if (ingreso) {
-  alert("Bienvenido al sitio");
-} else {
-  alert("Gracias por visitarnos");
+if (ingreso) { alert("Bienvenido al sitio"); 
+  let total = 0;
+  let bandera = true;
+
+  const productos = ["1- Vela", "2 - Aceites", "3 - Difusores"];
+  const precios = [50, 40, 13];
+
+ function compra(precio) {
+    total += precio;
+ }
+
+ function sumaProductos(numero) {
+   
+   if (numero > productos.length || numero <1 ) {
+     alert("Selección inválida. Por favor, intente nuevamente.");
+   }
+   else {
+     let indice = numero - 1;
+     compra(precios[indice]);
+
+     bandera= confirm("¿Quiere seguir comprando?");
+    }
 }
 
-let categorias = ["Fragancias", "Insumos", "Aromaterapia"];
-const articulos = ["Aceites", "Velas", "Difusores"];
-
-let preciosArticulos = [40, 50, 70];
-
-for (let i = 0; i < articulos.length; i++) {
- console.log("Artículo: " + articulos[i]);
- let categoria;
- do {
-   categoria = prompt("Por favor ingrese la categoría del artículo '" + articulos[i]);
-   if (!categorias) {
-     alert("La categoría ingresada no es válida. Por favor ingrese una categoría válida.");
-   }
- } while (!categorias.includes(categoria));
-
- let precio;
- do {
-   precio = parseFloat(prompt(`Por favor ingrese el precio del artículo ${articulos[i]}`));
-   if (isNaN(precio) || precio <= 0) {
-     alert("El precio ingresado no es válido. Por favor ingrese un número positivo como precio.");
-   }
- } while (isNaN(precio) || precio <= 0);
-
- preciosArticulos.push(precio);
- alert(`${articulos[i]} fue comprado en la categoría ${categoria}`);
+while(bandera){
+    sumaProductos(parseInt(prompt(`Seleccione un número para comprar: \n${productos.join('\n')}`)));
 }
 
+alert(`El total de la compra es: ${total}€`); 
 
-let totalCompraSinIVA= preciosArticulos.reduce((a, b) => a + b, 0);
-alert(`El total de la compra sin IVA es: ${totalCompraSinIVA.toFixed(2)}€`);
 
 const IVA = 1.23;
-let impuestoIVA= totalCompraSinIVA * IVA;
-alert(`El total de la compra con IVA incluido es: ${impuestoIVA.toFixed(2)}€`);
+
+let calcularIVA= confirm ("¿Desea calcular el IVA?");
+if (calcularIVA) {
+   let precioConIVA= total * IVA;
+   alert(`El precio con IVA es: ${precioConIVA.toFixed(2)}€`);
+} 
+else{
+    alert('No se ha aplicado el cálculo de I.V.A');
+
+
+}}
+ 
+else {
+ alert("Gracias por visitarnos");
+}
+
+
+
+
+
+
 
 
 
